@@ -7,15 +7,27 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3D561CA1FEA296D9C8759D10 /* Pods_WaveForm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1C404B5628B5CCDBDA3ADFB /* Pods_WaveForm.framework */; };
 		617A199A2910652600671290 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 617A19992910652600671290 /* AppDelegate.swift */; };
 		617A199C2910652600671290 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 617A199B2910652600671290 /* SceneDelegate.swift */; };
 		617A199E2910652600671290 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 617A199D2910652600671290 /* ViewController.swift */; };
 		617A19A12910652600671290 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 617A199F2910652600671290 /* Main.storyboard */; };
 		617A19A32910652700671290 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 617A19A22910652700671290 /* Assets.xcassets */; };
 		617A19A62910652700671290 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 617A19A42910652700671290 /* LaunchScreen.storyboard */; };
+		617A19AF2910670400671290 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 617A19AE2910670400671290 /* UIColor.swift */; };
+		617A19B1291067DA00671290 /* UIResponder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 617A19B0291067DA00671290 /* UIResponder.swift */; };
+		617A19B5291068AE00671290 /* ScrollableWaveformView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 617A19B4291068AE00671290 /* ScrollableWaveformView.swift */; };
+		617A19B72910692800671290 /* UIBezierPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 617A19B62910692800671290 /* UIBezierPath.swift */; };
+		617A19BA2910695600671290 /* BezierConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 617A19B92910695600671290 /* BezierConfiguration.swift */; };
+		617A19BD2910697500671290 /* BezierSegmentControlPoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 617A19BC2910697500671290 /* BezierSegmentControlPoints.swift */; };
+		617A19BF2910698900671290 /* PathCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 617A19BE2910698900671290 /* PathCommand.swift */; };
+		617A19C1291069A000671290 /* CGPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 617A19C0291069A000671290 /* CGPath.swift */; };
+		617A19C3291083C600671290 /* AudioSampleOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 617A19C2291083C600671290 /* AudioSampleOperation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		165AF59A1337351C165C3B25 /* Pods-WaveForm.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WaveForm.release.xcconfig"; path = "Target Support Files/Pods-WaveForm/Pods-WaveForm.release.xcconfig"; sourceTree = "<group>"; };
+		1FCEA6F76392D69D0CD16B0B /* Pods-WaveForm.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WaveForm.debug.xcconfig"; path = "Target Support Files/Pods-WaveForm/Pods-WaveForm.debug.xcconfig"; sourceTree = "<group>"; };
 		617A19962910652600671290 /* WaveForm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WaveForm.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		617A19992910652600671290 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		617A199B2910652600671290 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -24,6 +36,16 @@
 		617A19A22910652700671290 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		617A19A52910652700671290 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		617A19A72910652700671290 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		617A19AE2910670400671290 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
+		617A19B0291067DA00671290 /* UIResponder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIResponder.swift; sourceTree = "<group>"; };
+		617A19B4291068AE00671290 /* ScrollableWaveformView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollableWaveformView.swift; sourceTree = "<group>"; };
+		617A19B62910692800671290 /* UIBezierPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIBezierPath.swift; sourceTree = "<group>"; };
+		617A19B92910695600671290 /* BezierConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BezierConfiguration.swift; sourceTree = "<group>"; };
+		617A19BC2910697500671290 /* BezierSegmentControlPoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BezierSegmentControlPoints.swift; sourceTree = "<group>"; };
+		617A19BE2910698900671290 /* PathCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathCommand.swift; sourceTree = "<group>"; };
+		617A19C0291069A000671290 /* CGPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGPath.swift; sourceTree = "<group>"; };
+		617A19C2291083C600671290 /* AudioSampleOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioSampleOperation.swift; sourceTree = "<group>"; };
+		B1C404B5628B5CCDBDA3ADFB /* Pods_WaveForm.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WaveForm.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +53,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3D561CA1FEA296D9C8759D10 /* Pods_WaveForm.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -42,6 +65,8 @@
 			children = (
 				617A19982910652600671290 /* WaveForm */,
 				617A19972910652600671290 /* Products */,
+				75853DDCE71D20A54FCA1084 /* Pods */,
+				D84BA195F736768147288B40 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -56,6 +81,10 @@
 		617A19982910652600671290 /* WaveForm */ = {
 			isa = PBXGroup;
 			children = (
+				617A19BB2910696A00671290 /* Model */,
+				617A19B82910694F00671290 /* Helpers */,
+				617A19B22910689E00671290 /* View */,
+				617A19AD291066E200671290 /* Extensions */,
 				617A19992910652600671290 /* AppDelegate.swift */,
 				617A199B2910652600671290 /* SceneDelegate.swift */,
 				617A199D2910652600671290 /* ViewController.swift */,
@@ -67,6 +96,68 @@
 			path = WaveForm;
 			sourceTree = "<group>";
 		};
+		617A19AD291066E200671290 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				617A19AE2910670400671290 /* UIColor.swift */,
+				617A19B0291067DA00671290 /* UIResponder.swift */,
+				617A19B62910692800671290 /* UIBezierPath.swift */,
+				617A19C0291069A000671290 /* CGPath.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		617A19B22910689E00671290 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				617A19B3291068A600671290 /* Waveform */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		617A19B3291068A600671290 /* Waveform */ = {
+			isa = PBXGroup;
+			children = (
+				617A19B4291068AE00671290 /* ScrollableWaveformView.swift */,
+			);
+			path = Waveform;
+			sourceTree = "<group>";
+		};
+		617A19B82910694F00671290 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				617A19B92910695600671290 /* BezierConfiguration.swift */,
+				617A19C2291083C600671290 /* AudioSampleOperation.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		617A19BB2910696A00671290 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				617A19BC2910697500671290 /* BezierSegmentControlPoints.swift */,
+				617A19BE2910698900671290 /* PathCommand.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		75853DDCE71D20A54FCA1084 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				1FCEA6F76392D69D0CD16B0B /* Pods-WaveForm.debug.xcconfig */,
+				165AF59A1337351C165C3B25 /* Pods-WaveForm.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		D84BA195F736768147288B40 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B1C404B5628B5CCDBDA3ADFB /* Pods_WaveForm.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -74,9 +165,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 617A19AA2910652700671290 /* Build configuration list for PBXNativeTarget "WaveForm" */;
 			buildPhases = (
+				2577713282CCC7BB28DB4BF7 /* [CP] Check Pods Manifest.lock */,
 				617A19922910652600671290 /* Sources */,
 				617A19932910652600671290 /* Frameworks */,
 				617A19942910652600671290 /* Resources */,
+				B07EC489C4A2011D895517B8 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -133,14 +226,65 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		2577713282CCC7BB28DB4BF7 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-WaveForm-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B07EC489C4A2011D895517B8 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-WaveForm/Pods-WaveForm-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-WaveForm/Pods-WaveForm-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-WaveForm/Pods-WaveForm-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		617A19922910652600671290 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				617A199E2910652600671290 /* ViewController.swift in Sources */,
+				617A19AF2910670400671290 /* UIColor.swift in Sources */,
 				617A199A2910652600671290 /* AppDelegate.swift in Sources */,
+				617A19B1291067DA00671290 /* UIResponder.swift in Sources */,
+				617A19BD2910697500671290 /* BezierSegmentControlPoints.swift in Sources */,
+				617A19B5291068AE00671290 /* ScrollableWaveformView.swift in Sources */,
+				617A19C3291083C600671290 /* AudioSampleOperation.swift in Sources */,
+				617A19BA2910695600671290 /* BezierConfiguration.swift in Sources */,
 				617A199C2910652600671290 /* SceneDelegate.swift in Sources */,
+				617A19C1291069A000671290 /* CGPath.swift in Sources */,
+				617A19BF2910698900671290 /* PathCommand.swift in Sources */,
+				617A19B72910692800671290 /* UIBezierPath.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -282,6 +426,7 @@
 		};
 		617A19AB2910652700671290 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1FCEA6F76392D69D0CD16B0B /* Pods-WaveForm.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -295,6 +440,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 13;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -310,6 +456,7 @@
 		};
 		617A19AC2910652700671290 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 165AF59A1337351C165C3B25 /* Pods-WaveForm.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -323,6 +470,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 13;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

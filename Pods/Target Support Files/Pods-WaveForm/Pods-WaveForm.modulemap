@@ -1,0 +1,6 @@
+framework module Pods_WaveForm {
+  umbrella header "Pods-WaveForm-umbrella.h"
+
+  export *
+  module * { export * }
+}
