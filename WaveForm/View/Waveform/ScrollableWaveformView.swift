@@ -8,8 +8,23 @@
 import Foundation
 import UIKit
 import SnapKit
+import AVFoundation
+
+struct MagnetOptions {
+    var magnetWhileScrolling: Bool = true
+    var distanceToMagnet: CGFloat = 30
+}
 
 class ScrollableWaveformView: UIView {
+    private var lastOffset: CGPoint = .zero
+    private var lastOffsetCapture: TimeInterval = .zero
+    private var isScrollingFast: Bool = false
+        
+    private var isTouched: Bool = false
+    private var magnetConfig: MagnetOptions = MagnetOptions()
+    private var curentMagnetIndex: Int = 0
+    private var offsetPercent: CGFloat = 0
+    private var scrollSpeed: Float = 0
     
     var cursorWidth: CGFloat {
         return 2
@@ -51,7 +66,7 @@ class ScrollableWaveformView: UIView {
     
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
-//        scrollView.delegate = self
+        scrollView.delegate = self
         scrollView.showsHorizontalScrollIndicator = false
         return scrollView
     }()
@@ -107,7 +122,7 @@ class ScrollableWaveformView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func draw(_ rect: CGRect) {
+    public override func draw(_ rect: CGRect) {
         super.draw(rect)
         let contentWidth: CGFloat = CGFloat(soundData.count) * CGFloat((waveSegmentWidth + waveSpacingBetweenSegments)) * scaleX
         
@@ -250,9 +265,8 @@ class ScrollableWaveformView: UIView {
             pView.layer.cornerRadius = snapPointSize/2.0
             scrollView.addSubview(pView)
             let offset: CGFloat = waveformWidth * CGFloat(percent) - snapPointSize/2.0
-            snapPoints.append(offset)
             pView.snp.makeConstraints { make in
-                make.bottom.equalToSuperview().offset(5)
+                make.bottom.equalToSuperview().offset(-3)
                 make.width.height.equalTo(snapPointSize)
                 make.left.equalToSuperview().offset(cursorMaxOffsetX + offset)
             }
@@ -264,11 +278,14 @@ class ScrollableWaveformView: UIView {
             if nextIndex < snapPoints.count - 1 {
                 let nextOffset = waveformWidth * CGFloat(snapPoints[nextIndex])
                 let distance = nextOffset -  offset
-                if distance < minDistance {
+                if abs(distance) < minDistance {
                     minDistance = distance
                 }
             }
         }
+        
+        magnetConfig.distanceToMagnet = max(10,  min(30,  minDistance/2 - 5))
+        debugPrint("calculate distance \(minDistance). -> \(magnetConfig.distanceToMagnet)")
         
         hightLightMagnetPoint()
     }
@@ -304,11 +321,35 @@ class ScrollableWaveformView: UIView {
     }
     
     func hightLightMagnetPoint() {
-//        for i in 0 ..< magnetViews.count {
-//            magnetViews[i].backgroundColor = i == curentMagnetIndex ? magnetViewForcusColor : magnetViewColor
-//            let scale = i == curentMagnetIndex ? 1.2 : 1
-//            magnetViews[i].transform = CGAffineTransform.identity.scaledBy(x: scale, y: scale)
-//        }
+        for i in 0 ..< snapViews.count {
+            snapViews[i].backgroundColor = i == curentMagnetIndex ? snapPointFocusedColor : snapPointRegularColor
+            let scale = i == curentMagnetIndex ? 1.2 : 1
+            snapViews[i].transform = CGAffineTransform.identity.scaledBy(x: scale, y: scale)
+        }
+    }
+    
+    func calculateDistanceToMagnet(at offset: CGFloat) -> CGFloat {
+        
+        var rightIndex: Int = snapPoints.count - 1
+        for i in 0 ..< snapPoints.count {
+            let point = snapPoints[i]
+            
+            let pointOffset = waveformWidth * point + snapPointSize/2.0
+            
+            if pointOffset >= offset {
+                rightIndex = i
+                break
+            }
+        }
+        let leftIndex = min(0, rightIndex - 1)
+        
+        let distance = (snapPoints[rightIndex]  - snapPoints[leftIndex]) * waveformWidth
+        
+        return max(10, min(30, distance/2 - 5))
+    }
+    
+    deinit {
+        print(self, "Deinited")
     }
 }
 
@@ -372,4 +413,135 @@ extension ScrollableWaveformView {
     
 }
 
-
+extension ScrollableWaveformView: UIScrollViewDelegate {
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        handleMagnetWhenStopScroll()
+    }
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        debugPrint("scrollView BeginDragging \(scrollView.contentOffset.x)")
+        isTouched = true
+    }
+    
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        debugPrint("scrollView DidEndDragging \(scrollView.contentOffset.x)")
+        
+        guard isTouched else { return }
+        isTouched = false
+        guard !decelerate else { return }
+        handleMagnetWhenStopScroll()
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {        
+        guard self.isTouched else { return }
+        let contentOffset = scrollView.contentOffset//.x + UIScreen.main.bounds.width
+        
+        let currentTime = Date.timeIntervalSinceReferenceDate
+        let timeDiff = currentTime - lastOffsetCapture
+        let captureInterval = 0.3
+        
+        if timeDiff > captureInterval, magnetConfig.magnetWhileScrolling {
+            
+            let distance = contentOffset.x - lastOffset.x     // calc distance
+            let scrollSpeedNotAbs = (distance * 10) / 1000     // pixels per ms*10
+            scrollSpeed = fabsf(Float(scrollSpeedNotAbs)) * 2 // absolute value
+            print("scrollSpeed", scrollSpeed)
+            
+            if scrollSpeed > 0.05 {
+                isScrollingFast = true
+                print("Fast")
+            } else {
+                isScrollingFast = false
+                print("Slow")
+                for i in 0 ..< snapPoints.count {
+                    let point = snapPoints[i]
+                    let pointOffset = cursorMaxOffsetX + waveformWidth * point +  snapPointSize/2.0
+                    let distanceToPoint = pointOffset - (contentOffset.x + cursorOffsetX + cursorWidth/2)
+                    
+                    let distanceToMagnet = min(30, magnetConfig.distanceToMagnet * scaleX)
+                    if abs(distanceToPoint) <  distanceToMagnet{
+                        //
+                        debugPrint("should magnet \(distance >= 0 ? "leftRoRight" : "rightToLeft")")
+                        
+                        let shouldMagnet = distance * distanceToPoint > 0
+                        if shouldMagnet {
+                            break
+                        }
+                        
+                    }
+                }
+            }
+            
+            lastOffset = contentOffset
+            lastOffsetCapture = currentTime
+        }
+    }
+    
+    func handleMagnetWhenStopScroll() {
+        guard scrollSpeed > 0.07 else { return }
+        print(#function)
+        
+        let contentOffset = scrollView.contentOffset
+        let lastRightPoint = snapPoints[snapPoints.count - 1] * waveformWidth + snapPointSize/2.0
+        
+        if contentOffset.x <= 0 {
+            scrollToPoint(at: 0)
+        }  else {
+            var leftIndex: Int = 0
+            var rightIndex: Int = 1
+            
+            for i in 0 ..< snapPoints.count - 1 {
+                let leftPoint = snapPoints[i] * waveformWidth  + snapPointSize/2.0
+                let rightPoint = snapPoints[i+1] * waveformWidth  + snapPointSize/2.0
+                if leftPoint <= contentOffset.x && rightPoint >= contentOffset.x {
+                    leftIndex = i
+                    rightIndex = i + 1
+                    break
+                }
+            }
+            
+            var leftPoint = snapPoints[leftIndex] * waveformWidth
+            var rightPoint = snapPoints[rightIndex] * waveformWidth
+            
+            //if content offset is the right of last magnet point
+            if contentOffset.x > lastRightPoint {
+                leftIndex = snapPoints.count - 1
+                leftPoint = lastRightPoint
+                rightPoint = lastRightPoint + 1000
+            }
+            
+            let distance = (rightPoint  - leftPoint)
+            
+            let distanceToMagnet: Float  = Float(max(10, min(30, distance/2 - 3)))
+            
+            let distanceToLeft = fabsf(Float(leftPoint - contentOffset.x))
+            let distanceToRight = fabsf(Float(rightPoint - contentOffset.x))
+            if distanceToLeft < distanceToRight && distanceToLeft <= distanceToMagnet{
+                
+                scrollToPoint(at: leftIndex)
+            } else if distanceToRight <= distanceToMagnet {
+                scrollToPoint(at: rightIndex)
+            } else {
+                debugPrint("distanceToMagnet__ \(distanceToMagnet) -> \(distanceToLeft) -> \(distanceToRight)")
+                
+            }
+            debugPrint("distanceToMagnet \(distanceToMagnet)")
+            
+        }
+        
+        func scrollToPoint(at index: Int) {
+            let point: CGFloat = snapPoints[index]
+            let delta: CGFloat =  0 //self.magnetViewSize/2
+            let distance = fabsf(Float(waveformWidth * point +  delta - contentOffset.x))
+            let scrollTimer = Float(distance) / scrollSpeed
+            curentMagnetIndex = index
+            
+            UIView.animate(withDuration: TimeInterval(scrollTimer)) {
+                self.scrollView.setContentOffset(CGPoint(x: self.waveformWidth * point +  delta , y: 0), animated: true)
+            }completion: { _ in
+                UIView.animate(withDuration: 0.25) {
+                    self.hightLightMagnetPoint()
+                }
+            }
+        }
+    }
+}

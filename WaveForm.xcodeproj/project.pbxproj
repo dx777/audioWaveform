@@ -22,7 +22,9 @@
 		617A19BD2910697500671290 /* BezierSegmentControlPoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 617A19BC2910697500671290 /* BezierSegmentControlPoints.swift */; };
 		617A19BF2910698900671290 /* PathCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 617A19BE2910698900671290 /* PathCommand.swift */; };
 		617A19C1291069A000671290 /* CGPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 617A19C0291069A000671290 /* CGPath.swift */; };
-		617A19C3291083C600671290 /* AudioSampleOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 617A19C2291083C600671290 /* AudioSampleOperation.swift */; };
+		617A19D22911B37A00671290 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 617A19D12911B37A00671290 /* Constants.swift */; };
+		617A19D52911B5E200671290 /* VIAudioSampleOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 617A19D32911B5E200671290 /* VIAudioSampleOperation.swift */; };
+		617A19D62911B5E200671290 /* AudioExporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 617A19D42911B5E200671290 /* AudioExporter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,7 +46,9 @@
 		617A19BC2910697500671290 /* BezierSegmentControlPoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BezierSegmentControlPoints.swift; sourceTree = "<group>"; };
 		617A19BE2910698900671290 /* PathCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathCommand.swift; sourceTree = "<group>"; };
 		617A19C0291069A000671290 /* CGPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGPath.swift; sourceTree = "<group>"; };
-		617A19C2291083C600671290 /* AudioSampleOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioSampleOperation.swift; sourceTree = "<group>"; };
+		617A19D12911B37A00671290 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		617A19D32911B5E200671290 /* VIAudioSampleOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VIAudioSampleOperation.swift; sourceTree = "<group>"; };
+		617A19D42911B5E200671290 /* AudioExporter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioExporter.swift; sourceTree = "<group>"; };
 		B1C404B5628B5CCDBDA3ADFB /* Pods_WaveForm.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WaveForm.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -92,6 +96,7 @@
 				617A19A22910652700671290 /* Assets.xcassets */,
 				617A19A42910652700671290 /* LaunchScreen.storyboard */,
 				617A19A72910652700671290 /* Info.plist */,
+				617A19D12911B37A00671290 /* Constants.swift */,
 			);
 			path = WaveForm;
 			sourceTree = "<group>";
@@ -127,7 +132,6 @@
 			isa = PBXGroup;
 			children = (
 				617A19B92910695600671290 /* BezierConfiguration.swift */,
-				617A19C2291083C600671290 /* AudioSampleOperation.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -135,6 +139,8 @@
 		617A19BB2910696A00671290 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				617A19D32911B5E200671290 /* VIAudioSampleOperation.swift */,
+				617A19D42911B5E200671290 /* AudioExporter.swift */,
 				617A19BC2910697500671290 /* BezierSegmentControlPoints.swift */,
 				617A19BE2910698900671290 /* PathCommand.swift */,
 			);
@@ -279,11 +285,13 @@
 				617A19B1291067DA00671290 /* UIResponder.swift in Sources */,
 				617A19BD2910697500671290 /* BezierSegmentControlPoints.swift in Sources */,
 				617A19B5291068AE00671290 /* ScrollableWaveformView.swift in Sources */,
-				617A19C3291083C600671290 /* AudioSampleOperation.swift in Sources */,
 				617A19BA2910695600671290 /* BezierConfiguration.swift in Sources */,
 				617A199C2910652600671290 /* SceneDelegate.swift in Sources */,
 				617A19C1291069A000671290 /* CGPath.swift in Sources */,
+				617A19D52911B5E200671290 /* VIAudioSampleOperation.swift in Sources */,
+				617A19D22911B37A00671290 /* Constants.swift in Sources */,
 				617A19BF2910698900671290 /* PathCommand.swift in Sources */,
+				617A19D62911B5E200671290 /* AudioExporter.swift in Sources */,
 				617A19B72910692800671290 /* UIBezierPath.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -440,7 +448,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 13;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -470,7 +478,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 13;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
